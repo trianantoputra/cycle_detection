@@ -4,21 +4,24 @@
         
     }
     // Floyd's tortoise and hare
-    public function findDuplicate($nums){
+    public function floyd($nums){
       $tortoise = $nums[0];
-      $hare = $nums[0];
-      echo "<pre>";
-      print_r ($nums);
-      echo "</pre>";
+      $hare     = $nums[0];
+      $nData    = count($nums);
+
       while(true){
+        if($hare == $nData || $tortoise == $nData){
+          return "NO DUPLICATE";
+        }
         $tortoise = $nums[$tortoise];
-        $hare = $nums[$nums[$hare]];
+        $hare     = $nums[$nums[$hare]];
         echo "<pre>";
-        echo $tortoise."\n";
-        echo $hare."\n";
+        echo "TORTOISE: ".$tortoise."\n";
+        echo "HARE: ".$hare."\n";
         echo "</pre>";
         if ($tortoise == $hare){
-          echo "SAMA TORTOISE DAN HARE<br>";
+          // echo "SAMA TORTOISE DAN HARE<br>";
+          // echo $tortoise." ".$hare;
           break;
         }
       }
@@ -32,8 +35,8 @@
     }
   }
   
-  $arr      = [3,1,3,4,2,5,5];
+  $arr      = [1,3,4,2,5,1];
   $detector = new CycleDetection();
 
-  echo $detector->findDuplicate($arr);
+  echo $detector->floyd($arr);
 ?>
